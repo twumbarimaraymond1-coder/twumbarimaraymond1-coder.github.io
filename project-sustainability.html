@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life-Cycle Energy Analysis — Raymond Twum-Barima</title>
+<meta name="description" content="Sustainable engineering coursework: whole-life embodied and processing energy assessment of an inkjet printer using Ansys Granta EduPack.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">Sustainable engineering coursework · Module 25WSC602</div>
+  <h1>Life-cycle energy analysis of a consumer product</h1>
+  <div class="meta">
+    <span><b>Type:</b> Group project (disassembly + LCA)</span>
+    <span><b>Tools:</b> Ansys Granta EduPack</span>
+    <span><b>Focus:</b> embodied energy · eco-design</span>
+  </div>
+</header>
+
+<section class="wrap">
+<div class="layout">
+  <div class="content">
+
+    <div class="callout">
+      <b>Overview.</b> A four-person eco-design study of an HP OfficeJet Pro inkjet printer (Group E1), each member
+      owning a chapter — disassembly, metallic recycling, non-metallic recycling and energy. <b>My chapter was Energy
+      Conservation:</b> a whole-life energy assessment building a full material mass breakdown, calculating embodied and
+      processing energy for every material in Ansys Granta EduPack, and identifying the most energy-intensive life-cycle
+      phases to drive recommendations.
+    </div>
+
+    <h2>Method</h2>
+    <h3>1 · Material mass breakdown</h3>
+    <p>Rather than estimating composition by hand during disassembly, I used HP's official Product Material Content
+    document together with the product's 8.1 kg mass to compute the mass of each material accurately — from the
+    dominant ABS housing down to trace copper and ferrite.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Material composition of the printer by mass">
+        <style>
+          .glab{fill:#6a6457;font:12px Inter,sans-serif}
+          .val{fill:#211f1b;font:bold 12px Inter,sans-serif}
+          .ttl{fill:#6a6457;font:12px Inter,sans-serif}
+        </style>
+        <text class="ttl" x="320" y="18" text-anchor="middle">Printer composition by mass (8.1 kg total)</text>
+        <!-- horizontal bars; scale 63.8% -> 430px ; x start 150 -->
+        <!-- ABS 63.8% -->
+        <rect x="150" y="40" width="430" height="22" rx="3" fill="#a64321"/>
+        <text class="glab" x="144" y="56" text-anchor="end">ABS plastic</text>
+        <text class="val" x="586" y="56">63.8%</text>
+        <!-- Galv steel 14% -> 94px -->
+        <rect x="150" y="74" width="94" height="22" rx="3" fill="#b8ad97"/>
+        <text class="glab" x="144" y="90" text-anchor="end">Galvanised steel</text>
+        <text class="val" x="250" y="90">14.0%</text>
+        <!-- Glass 9% -> 61px -->
+        <rect x="150" y="108" width="61" height="22" rx="3" fill="#b8ad97"/>
+        <text class="glab" x="144" y="124" text-anchor="end">Glass</text>
+        <text class="val" x="217" y="124">9.0%</text>
+        <!-- Stainless 2.7% -> 18px -->
+        <rect x="150" y="142" width="18" height="22" rx="3" fill="#c3b8a0"/>
+        <text class="glab" x="144" y="158" text-anchor="end">Stainless steel</text>
+        <text class="val" x="174" y="158">2.7%</text>
+        <!-- POM 2.1% -->
+        <rect x="150" y="176" width="14" height="22" rx="3" fill="#c3b8a0"/>
+        <text class="glab" x="144" y="192" text-anchor="end">POM</text>
+        <text class="val" x="170" y="192">2.1%</text>
+        <!-- Other ~8.4% -> 57px -->
+        <rect x="150" y="210" width="57" height="22" rx="3" fill="#c3b8a0"/>
+        <text class="glab" x="144" y="226" text-anchor="end">PC, PPO &amp; others</text>
+        <text class="val" x="213" y="226">8.4%</text>
+        <text class="ttl" x="150" y="258">ABS housing dominates the mass — and, with its high embodied energy, the energy footprint.</text>
+      </svg>
+      <figcaption>Material composition derived from HP's material-content data and the 8.1 kg product mass.</figcaption>
+    </figure>
+
+    <h3>2 · Embodied &amp; processing energy</h3>
+    <p>For each material I drew embodied-energy and processing-energy figures from Ansys Granta EduPack and combined
+    them with the calculated masses. For example, ABS carries an embodied energy of roughly <b>88.9–98.3 MJ/kg</b>
+    plus polymer-moulding processing of ~19.7–21.7 MJ/kg — and because ABS is also the largest mass fraction, it
+    dominates the production-phase energy. The same method was applied across all materials and aggregated.</p>
+
+    <h3>3 · Life-cycle phases &amp; eco-design</h3>
+    <p>I assessed each phase — raw materials and production, distribution, use, and end-of-life — to find where energy
+    demand concentrates, then proposed targeted improvements. The work fed into a group disassembly study, eco-design
+    considerations and a Pugh-matrix evaluation of design alternatives, set against circular-economy principles
+    (remanufacturing, material recycling and energy recovery) covered in the module.</p>
+
+    <h2>Skills demonstrated</h2>
+    <ul>
+      <li>Structured life-cycle assessment of a real product, end to end.</li>
+      <li>Quantitative materials and energy analysis using Ansys Granta EduPack.</li>
+      <li>Translating analysis into actionable eco-design and end-of-life recommendations.</li>
+      <li>Applying circular-economy thinking and structured decision tools (Pugh matrix) in a team.</li>
+    </ul>
+
+    <a class="backlink" href="projects.html">← Back to all projects</a>
+  </div>
+
+  <aside>
+    <div class="sidecard">
+      <h4>Project facts</h4>
+      <dl>
+        <dt>Module</dt><dd>25WSC602 — Sustainable Engineering</dd>
+        <dt>Product</dt><dd>HP OfficeJet Pro inkjet printer (8.1 kg)</dd>
+        <dt>Tool</dt><dd>Ansys Granta EduPack</dd>
+        <dt>Analysis</dt><dd>Embodied + processing energy, all life-cycle phases</dd>
+        <dt>Methods</dt>
+        <dd><div class="chips"><span class="chip">LCA</span><span class="chip">Pugh matrix</span><span class="chip">Eco-design</span></div></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · MEng Mechanical Engineering</div>
+    <div class="foot-links">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

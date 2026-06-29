@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GraceMeet — Raymond Twum-Barima</title>
+<meta name="description" content="GraceMeet — an AI-powered faith-centred matchmaking platform I founded and built: a PWA on Supabase and Claude with a self-improving matching feedback loop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">Founder &amp; solo developer · Software / AI product</div>
+  <h1>GraceMeet — faith-centred matchmaking, powered by AI</h1>
+  <div class="meta">
+    <span><b>Role:</b> Founder &amp; full-stack developer</span>
+    <span><b>Stack:</b> PWA · Supabase · Claude (Anthropic)</span>
+    <span><b>Live:</b> <a href="https://gracemeetapp.com" target="_blank" rel="noopener">gracemeetapp.com</a></span>
+  </div>
+</header>
+
+<section class="wrap">
+<div class="layout">
+  <div class="content">
+
+    <div class="callout">
+      <b>What it is.</b> GraceMeet is an AI-powered Christian/Catholic matchmaking platform focused on lasting
+      marriages rather than endless swiping. I founded it and built it end to end — product, full-stack engineering,
+      AI integration, and the surrounding company and ethics work.
+    </div>
+
+    <div class="social" style="margin:18px 0 4px">
+      <a class="cv" href="https://gracemeetapp.com" target="_blank" rel="noopener">Visit gracemeetapp.com →</a>
+    </div>
+
+    <h2>The idea</h2>
+    <p>Most dating apps optimise for engagement, not outcomes. GraceMeet takes the opposite stance: a small number of
+    deeply-considered, faith-aligned matches each week, with the explicit goal of helping people find a marriage. There
+    is no swiping — users receive curated matches with a detailed compatibility breakdown and simply accept or pass.</p>
+
+    <h2>What I built</h2>
+    <ul>
+      <li><b>A full progressive web app</b> — onboarding, curated matching, accept/pass flow, real-time messaging, and
+      installable/offline support via a service worker and web manifest.</li>
+      <li><b>An AI matching engine</b> — compatibility analysis driven by Claude (Anthropic), called securely through a
+      backend proxy so no keys ever touch the client.</li>
+      <li><b>A data model on Supabase</b> — Postgres for profiles, faith and lifestyle details, matches, conversations
+      and outcomes, with authentication and serverless edge functions.</li>
+    </ul>
+
+    <h2>The differentiator — a self-improving feedback loop</h2>
+    <p>The part I'm most proud of is that GraceMeet is designed to <b>get smarter over time</b>. After a match, the app
+    schedules automatic check-ins at milestones (two weeks, one month, three months and beyond) and captures structured
+    ratings and free-text feedback on how the relationship is going. A weekly job then has the AI read across all of
+    those outcomes, extract statistical patterns about what actually leads to healthy, lasting relationships, and feed
+    those learnings back into future match generation.</p>
+    <div class="callout">
+      In other words, every couple the system pairs makes the next round of matching a little better — a closed loop
+      from outcome back to recommendation, which most static dating apps simply don't have.
+    </div>
+
+    <h2>Beyond the code</h2>
+    <p>Building a product of this scope solo was only realistic because I lean on <b>AI-assisted development</b> — using
+    LLMs to move fast across the full stack while keeping ownership of the architecture and decisions. As a solo founder
+    I've also owned the things engineering courses don't teach: registering the company, writing
+    the privacy policy, terms and community guidelines, thinking carefully about data security, and outreach to
+    potential early communities. I care a lot about building this <b>ethically</b> — handling sensitive personal and
+    faith data responsibly, and designing for genuine human dignity rather than addictive engagement.</p>
+
+    <h2>What it demonstrates</h2>
+    <ul>
+      <li>End-to-end product ownership — from idea and data model to a deployed, installable application.</li>
+      <li>Full-stack web development and practical integration of large language models into a real product.</li>
+      <li>Backend and database design (Supabase / Postgres), authentication and serverless functions.</li>
+      <li>Product thinking, ethics and the commercial/operational side of getting something off the ground alone.</li>
+    </ul>
+
+    <a class="backlink" href="projects.html">← Back to all projects</a>
+  </div>
+
+  <aside>
+    <div class="sidecard">
+      <h4>Project facts</h4>
+      <dl>
+        <dt>Live site</dt><dd><a href="https://gracemeetapp.com" target="_blank" rel="noopener">gracemeetapp.com</a></dd>
+        <dt>Role</dt><dd>Founder &amp; full-stack developer</dd>
+        <dt>Type</dt><dd>AI software product (PWA)</dd>
+        <dt>Stack</dt>
+        <dd><div class="chips"><span class="chip">PWA</span><span class="chip">Supabase</span><span class="chip">Postgres</span><span class="chip">Claude AI</span></div></dd>
+        <dt>Skills</dt>
+        <dd><div class="chips"><span class="chip">Full-stack</span><span class="chip">LLM integration</span><span class="chip">Product design</span><span class="chip">Founder / ops</span></div></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · Made in London</div>
+    <div class="foot-links">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="https://github.com/twumbarimaraymond1-coder" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2-D Conduction Solver — Raymond Twum-Barima</title>
+<meta name="description" content="Numerical heat transfer coursework: finite-difference solution of 2-D steady conduction with grid-refinement convergence study.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">Numerical heat transfer coursework · Module 25WSC801</div>
+  <h1>Finite-difference solution of 2-D steady conduction</h1>
+  <div class="meta">
+    <span><b>Type:</b> Individual coursework</span>
+    <span><b>Tools:</b> Excel (iterative solver)</span>
+    <span><b>Result:</b> energy imbalance reduced to −0.06%</span>
+  </div>
+</header>
+
+<section class="wrap">
+<div class="layout">
+  <div class="content">
+
+    <div class="callout">
+      <b>In one line.</b> I derived the discretised energy-balance equations for a generating bar section with mixed
+      boundary conditions, solved the temperature field iteratively, and proved convergence with a grid-refinement
+      study that drove the domain energy imbalance from <b>0.87% down to −0.06%</b>.
+    </div>
+
+    <h2>The problem</h2>
+    <p>The task was to find the steady-state temperature field in a 6 cm × 6 cm cross-section of a long bar with two
+    diagonally-mirrored cut-outs, treated as a 2-D conduction problem. The boundary conditions combined several
+    physics: fixed 800 °C top and bottom edges, convective cut-out edges (h = 500 W/m²·°C, ambient 20 °C), thermal
+    conductivity k = 40 W/m·°C, and a volumetric heat generation of 850 kW/m³.</p>
+
+    <figure>
+      <img src="assets/img/ht-geometry.png" alt="Cross-section of the bar with two diagonally-mirrored cut-outs, showing fixed-temperature edges in red and convective edges in blue" style="max-width:520px;margin:0 auto">
+      <figcaption>The bar cross-section and boundary conditions: fixed 800 °C edges (red) and convective edges (blue),
+      with two diagonally-mirrored cut-outs, modelled as a 2-D conduction domain.</figcaption>
+    </figure>
+
+    <h2>Approach</h2>
+    <h3>1 · Deriving the node equations</h3>
+    <p>From a control-volume energy balance I derived discretised temperature equations for three distinct node types,
+    each handled separately so the boundary conditions were captured exactly:</p>
+    <ul>
+      <li><b>Interior conduction nodes</b> — Fourier conduction across all four faces.</li>
+      <li><b>Convective boundary nodes</b> — a convective term replacing conduction on the exposed face.</li>
+      <li><b>Convective cut-out nodes</b> — the more complex corner geometry of the cut-outs.</li>
+    </ul>
+    <p>Nodes were deliberately placed directly on every boundary so the conditions were applied precisely rather than
+    interpolated.</p>
+
+    <figure>
+      <img src="assets/img/ht-nodes.png" alt="Computational grid with nodes coloured by type: interior conduction, convective, convective cut-out, and fixed-temperature nodes">
+      <figcaption>Node classification on the grid (with an i, j indexing system) — fixed-temperature, interior
+      conduction, convective and convective cut-out nodes each get their own discretised equation.</figcaption>
+    </figure>
+
+    <h3>2 · Iterative solution</h3>
+    <p>I implemented the solver in Excel using the <b>Jacobi method</b>, updating all node temperatures simultaneously
+    from the previous sweep. Jacobi was chosen for stability and transparency, accepting its slower convergence versus
+    Gauss–Seidel given Excel's processing limits.</p>
+
+    <h3>3 · Verification by energy balance</h3>
+    <p>To check the solution rather than just trust it, I performed a whole-domain energy balance at steady state —
+    summing conduction at fixed-temperature edges, convection at convective edges, and the volumetric generation. A
+    net imbalance close to zero indicates convergence, and a shrinking imbalance under refinement indicates increasing
+    accuracy.</p>
+
+    <h2>Results — grid-refinement convergence</h2>
+    <p>I ran the solver at three resolutions with an approximately √2 refinement ratio between levels, consistent with
+    classical Richardson refinement for finite-difference schemes.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Percentage energy imbalance decreasing with grid refinement">
+        <style>
+          .axis{stroke:#ddd5c5;stroke-width:1}
+          .glab{fill:#6a6457;font:12px Inter,sans-serif}
+          .val{fill:#211f1b;font:bold 12px Inter,sans-serif}
+          .ttl{fill:#6a6457;font:12px Inter,sans-serif}
+          .ln{fill:none;stroke:#a64321;stroke-width:2.5}
+          .dot{fill:#a64321}
+        </style>
+        <line class="axis" x1="150" y1="40"  x2="600" y2="40"/>
+        <line class="axis" x1="150" y1="110" x2="600" y2="110"/>
+        <line class="axis" x1="150" y1="180" x2="600" y2="180"/>
+        <line class="axis" x1="150" y1="250" x2="600" y2="250"/>
+        <text class="ttl" x="120" y="44"  text-anchor="end">1.0%</text>
+        <text class="ttl" x="120" y="114" text-anchor="end">0.6%</text>
+        <text class="ttl" x="120" y="184" text-anchor="end">0.2%</text>
+        <text class="ttl" x="120" y="254" text-anchor="end">0.0%</text>
+
+        <!-- baseline 0% at y=250; scale 1% -> 210px so y = 250 - pct*210 -->
+        <!-- 7x7: 0.87% -> y=67 ; 13x13: 0.32% -> y=183 ; 25x25: -0.06% -> y=263(clip to 256) -->
+        <polyline class="ln" points="220,67 385,183 550,256"/>
+        <circle class="dot" cx="220" cy="67" r="5"/>
+        <circle class="dot" cx="385" cy="183" r="5"/>
+        <circle class="dot" cx="550" cy="256" r="5"/>
+        <text class="val" x="220" y="55" text-anchor="middle">0.87%</text>
+        <text class="val" x="385" y="171" text-anchor="middle">0.32%</text>
+        <text class="val" x="550" y="244" text-anchor="middle">−0.06%</text>
+        <text class="glab" x="220" y="278" text-anchor="middle">7 × 7</text>
+        <text class="glab" x="385" y="278" text-anchor="middle">13 × 13</text>
+        <text class="glab" x="550" y="278" text-anchor="middle">25 × 25</text>
+        <text class="ttl" x="375" y="20" text-anchor="middle">Domain energy imbalance vs. grid resolution</text>
+      </svg>
+      <figcaption>Energy imbalance falls sharply and changes sign as the grid is refined — the temperature field and
+      heat fluxes have converged by the 25 × 25 grid.</figcaption>
+    </figure>
+
+    <table class="data">
+      <thead><tr><th>Grid</th><th>Residual (W)</th><th>Energy imbalance</th></tr></thead>
+      <tbody>
+        <tr><td>7 × 7</td><td>403.75</td><td>0.87%</td></tr>
+        <tr><td>13 × 13</td><td>170</td><td>0.32%</td></tr>
+        <tr class="best"><td>25 × 25</td><td>−33.37</td><td>−0.06%</td></tr>
+      </tbody>
+    </table>
+
+    <p>The coarse 7 × 7 grid gave a reasonable first estimate but struggled with the steep gradients around the
+    cut-outs. Each refinement made the solution more energy-consistent, confirming a converged result.</p>
+
+    <h2>Skills demonstrated</h2>
+    <ul>
+      <li>Deriving finite-difference equations from first-principles energy balances for mixed boundary types.</li>
+      <li>Implementing and stabilising an iterative linear solver.</li>
+      <li>Verification and convergence practice — treating a numerical answer as something to be proven, not assumed.</li>
+    </ul>
+
+    <a class="backlink" href="projects.html">← Back to all projects</a>
+  </div>
+
+  <aside>
+    <div class="sidecard">
+      <h4>Project facts</h4>
+      <dl>
+        <dt>Module</dt><dd>25WSC801 — Heat Transfer</dd>
+        <dt>Method</dt><dd>Finite difference · Jacobi iteration</dd>
+        <dt>Verification</dt><dd>Whole-domain energy balance</dd>
+        <dt>Converged error</dt><dd>−0.06% (25 × 25 grid)</dd>
+        <dt>Boundary types</dt>
+        <dd><div class="chips"><span class="chip">Fixed-T</span><span class="chip">Convective</span><span class="chip">Cut-out corners</span></div></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · MEng Mechanical Engineering</div>
+    <div class="foot-links">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

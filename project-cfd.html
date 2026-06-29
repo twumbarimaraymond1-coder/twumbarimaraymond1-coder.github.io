@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFD: Wind Flow & Heat Transfer Around a Cube — Raymond Twum-Barima</title>
+<meta name="description" content="CFD group project in Star-CCM+ simulating wind flow and heat transfer around a surface-mounted cube. My contribution: a RANS turbulence-model comparison (k-epsilon, SST k-omega, Reynolds Stress Model).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">CFD group project · Module WSC812</div>
+  <h1>Wind flow &amp; heat transfer around a surface-mounted cube</h1>
+  <div class="meta">
+    <span><b>Type:</b> Group project (5 members)</span>
+    <span><b>My role:</b> Turbulence-model comparison</span>
+    <span><b>Tools:</b> Siemens Star-CCM+</span>
+  </div>
+</header>
+
+<section class="wrap">
+<div class="layout">
+  <div class="content">
+
+    <div class="callout">
+      <b>The project.</b> Simulate the airflow and heat transfer around a wall-mounted cube — a classic external
+      aerodynamics / built-environment benchmark — in Siemens Star-CCM+, and validate it against published experimental
+      data. <b>My individual contribution was the turbulence-model study:</b> quantifying how the choice of RANS model
+      changes the predicted heat transfer in this strongly separated flow.
+    </div>
+
+    <h2>The group simulation</h2>
+    <p>The team modelled a 15&nbsp;mm copper cube (with an epoxy layer) mounted in a 150&nbsp;×&nbsp;50&nbsp;mm channel,
+    solving conjugate heat transfer between the heated solid and the air. Key choices:</p>
+    <ul>
+      <li><b>Mesh:</b> a polyhedral mesh scaled to the cube size, with prism layers and three volumetric refinements
+      around the cube and wake — giving <b>wall y+ &lt; 1</b> for proper resolution of the viscous sublayer (essential
+      for heat-transfer accuracy with SST k-ω).</li>
+      <li><b>Physics:</b> steady, 3-D segregated flow; air as an ideal gas; a symmetry plane to halve the domain; a
+      constant-temperature (348&nbsp;K) interface inside the cube.</li>
+      <li><b>Conditions:</b> Reynolds numbers from 2,750 to 4,970, matching the reference experiment.</li>
+    </ul>
+
+    <figure>
+      <img src="assets/img/cfd-cube-velocity.png" alt="Velocity magnitude contour on a vertical plane through the cube, showing acceleration over the top and a low-velocity wake behind">
+      <figcaption>Velocity field on a vertical plane through the cube centre — flow accelerates over the leading edge
+      and a separated low-velocity wake forms downstream (Siemens Star-CCM+).</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/cfd-cube-horizontal.png" alt="Velocity contour on a horizontal plane near the floor, showing flow wrapping around the cube">
+      <figcaption>Horizontal plane near the floor — the flow wraps around the cube, forming the characteristic
+      horseshoe-vortex structure reported in the literature.</figcaption>
+    </figure>
+
+    <p>The simulation reproduced the expected flow physics — a windward stagnation zone, leading-edge separation, a
+    horseshoe vortex, and downstream recirculation and reattachment — matching the experimental streamline patterns of
+    Meinders et&nbsp;al. to within the ~10–15% expected from the channel-vs-boundary-layer difference.</p>
+
+    <h2>My contribution — turbulence-model comparison</h2>
+    <p>Steady RANS turbulence models are cheap but rely on modelling assumptions that are stretched by separated,
+    recirculating flow. I kept the domain and mesh identical to the group case and varied <b>only the turbulence
+    model</b>, so any differences were down to the model itself. I compared three:</p>
+    <ul>
+      <li><b>Realizable k-ε</b> — two-equation eddy-viscosity model (assumes isotropic turbulence).</li>
+      <li><b>SST k-ω</b> — Menter's blended model, better near walls and in adverse pressure gradients.</li>
+      <li><b>Reynolds Stress Model (RSM)</b> — solves the Reynolds stresses directly, capturing anisotropy. I ran it
+      with a <b>staged approach</b> — SST for 1,000 iterations to build a stable field, then switched to RSM to 2,000 —
+      for numerical stability.</li>
+    </ul>
+    <p>I validated each against experimental data along the path A–B–C–D over the cube surface (normalised heat transfer
+    coefficient) and through the wake (velocity profile at y/H&nbsp;=&nbsp;0.5).</p>
+
+    <h3>Results</h3>
+    <table class="data">
+      <thead><tr><th>Region (normalised HTC)</th><th>Experiment</th><th>RSM</th><th>SST k-ω</th><th>Realizable k-ε</th></tr></thead>
+      <tbody>
+        <tr class="best"><td>Top face B–C (separated)</td><td>0.849</td><td>0.640</td><td>0.584</td><td>0.434</td></tr>
+        <tr><td>Windward face C–D (stagnation)</td><td>1.159</td><td>1.614</td><td>1.566</td><td>1.553</td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>On the <b>separated top face</b>, all models under-predicted heat transfer, but <b>RSM came closest</b> (0.640
+      vs 0.849) — its ability to capture Reynolds-stress anisotropy matters most where flow separates. Realizable k-ε
+      was worst (0.434), as its isotropic assumption is poorly suited to 3-D separated flow.</li>
+      <li>On the <b>windward stagnation face</b>, all models <b>over-predicted by 34–39%</b>, caused by excessive
+      turbulence production where the flow impinges on the cube.</li>
+      <li>All three captured the wake velocity deficit and reversed-flow recirculation, with RSM and SST agreeing most
+      closely.</li>
+    </ul>
+    <p><b>Conclusion:</b> RANS model selection significantly affects heat-transfer prediction around a bluff body, and
+    the Reynolds Stress Model is the most reliable choice for separated flow — at the cost of slower convergence.</p>
+
+    <figure>
+      <img src="assets/img/cfd-residuals.png" alt="Residual convergence plot showing continuity, energy, momentum and turbulence residuals levelling off">
+      <figcaption>Convergence: residuals level off with the turbulence quantities settling higher, as expected for a
+      complex separated flow — verified alongside a stabilised heat-transfer monitor before taking results.</figcaption>
+    </figure>
+
+    <h2>Skills demonstrated</h2>
+    <ul>
+      <li>Full CFD workflow in Siemens Star-CCM+ — domain, polyhedral meshing with prism layers, conjugate heat transfer.</li>
+      <li>Understanding why near-wall resolution (y+ &lt; 1) and turbulence-model choice decide heat-transfer accuracy.</li>
+      <li>A controlled comparative study, isolating one variable and validating against experiment.</li>
+      <li>Working in a five-person team, each owning a distinct investigation around a shared base simulation.</li>
+    </ul>
+
+    <a class="backlink" href="projects.html">← Back to all projects</a>
+  </div>
+
+  <aside>
+    <div class="sidecard">
+      <h4>Project facts</h4>
+      <dl>
+        <dt>Module</dt><dd>WSC812 — CFD</dd>
+        <dt>My role</dt><dd>RANS turbulence-model comparison</dd>
+        <dt>Software</dt><dd>Siemens Star-CCM+</dd>
+        <dt>Case</dt><dd>Wall-mounted cube, conjugate heat transfer, Re 2,750–4,970</dd>
+        <dt>Best model</dt><dd>Reynolds Stress Model (separated flow)</dd>
+        <dt>Methods</dt>
+        <dd><div class="chips"><span class="chip">Polyhedral mesh</span><span class="chip">Prism layers</span><span class="chip">y+ &lt; 1</span><span class="chip">CHT</span></div></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · Made in London</div>
+    <div class="foot-links">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

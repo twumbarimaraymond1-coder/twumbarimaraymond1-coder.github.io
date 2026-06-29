@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Raymond Twum-Barima</title>
+<meta name="description" content="Engineering projects: machine learning for boiling heat transfer, CFD, numerical heat transfer, FEA and sustainable engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">Portfolio</div>
+  <h1>Projects</h1>
+  <p class="lede" style="color:var(--muted);max-width:760px">A selection of academic, research and applied work spanning
+  thermofluids, computational simulation, structural analysis and sustainability — plus software and open source.
+  Click any project for the full case study.</p>
+</header>
+
+<section class="wrap">
+  <div class="kicker">Software &amp; open source</div>
+  <h2 class="section-title" style="margin-bottom:18px">Things I&rsquo;ve built &amp; shipped</h2>
+  <div class="grid cols-2" style="margin-bottom:40px">
+    <a class="card" href="project-gracemeet.html">
+      <div class="tag">Founder &amp; full-stack · AI product</div>
+      <h3>GraceMeet — faith-centred matchmaking, powered by AI</h3>
+      <p>An AI-powered Christian/Catholic matchmaking platform I founded and built end to end: a PWA on Supabase and
+      Claude, with a self-improving feedback loop that learns from real relationship outcomes to make future matches
+      smarter.</p>
+      <div class="chips"><span class="chip">PWA</span><span class="chip">Supabase</span><span class="chip">Postgres</span><span class="chip">Claude AI</span><span class="chip">Founder</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="https://github.com/twumbarimaraymond1-coder/icarus" target="_blank" rel="noopener">
+      <div class="tag">Open-source Python library</div>
+      <h3>icarus — heat-flux prediction from IR data</h3>
+      <p>I packaged my final-year research methodology into an installable Python library: a full pipeline from raw
+      infrared data to trained POD / DMD / neural-network heat-flux models, with a high-level Quickstart API. Achieves
+      R² = 0.73 on a 17M-sample dataset.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">NumPy / SciPy</span><span class="chip">scikit-learn</span><span class="chip">Optuna</span><span class="chip">POD / DMD</span></div>
+      <p class="more" style="margin-top:14px">View on GitHub ↗</p>
+    </a>
+  </div>
+
+  <div class="kicker">Engineering</div>
+  <h2 class="section-title" style="margin-bottom:18px">Academic &amp; research projects</h2>
+  <div class="grid cols-2">
+
+    <a class="card" href="project-individual.html">
+      <div class="tag">Final-year individual project · 25WSC500</div>
+      <h3>Predicting boiling heat flux with machine learning</h3>
+      <p>Investigated whether data-driven methods could predict local boiling heat flux from high-speed infrared
+      thermography. Processed a 17.4-million-sample dataset, applied Proper Orthogonal Decomposition and Dynamic Mode
+      Decomposition, and trained three neural networks of increasing physical sophistication. The reduced-order modal
+      model reached R² = 0.73 — a 69% gain in explained variance over the linear baseline.</p>
+      <div class="chips"><span class="chip">MATLAB</span><span class="chip">Python</span><span class="chip">POD</span><span class="chip">DMD</span><span class="chip">Neural networks</span><span class="chip">Bayesian optimisation</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="project-cfd.html">
+      <div class="tag">CFD group project · WSC812</div>
+      <h3>Wind flow &amp; heat transfer around a surface-mounted cube</h3>
+      <p>A five-person Star-CCM+ study of airflow and conjugate heat transfer around a heated wall-mounted cube,
+      validated against published experiment (horseshoe vortex, wake recirculation, reattachment). My contribution was
+      a <b>RANS turbulence-model comparison</b> — k-ε vs SST k-ω vs the Reynolds Stress Model — quantifying their effect
+      on predicted heat transfer in separated flow.</p>
+      <div class="chips"><span class="chip">Siemens Star-CCM+</span><span class="chip">Turbulence modelling</span><span class="chip">Conjugate heat transfer</span><span class="chip">RANS / RSM</span><span class="chip">Validation</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="project-heat-transfer.html">
+      <div class="tag">Numerical heat transfer · 25WSC801</div>
+      <h3>2-D steady conduction by finite differences</h3>
+      <p>Derived energy-balance equations for interior, convective and cut-out boundary nodes, then implemented an
+      iterative Jacobi solver for a generating bar section. Verified accuracy with a domain energy balance and a
+      grid-refinement study, driving the imbalance from 0.87% down to −0.06%.</p>
+      <div class="chips"><span class="chip">Finite difference</span><span class="chip">Jacobi iteration</span><span class="chip">Energy balance</span><span class="chip">Grid refinement</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="project-fea.html">
+      <div class="tag">Finite element analysis · 25WSC106 · Group 21</div>
+      <h3>Determining the safe working load of a wrench</h3>
+      <p>A six-person study finding a spanner's safe working load by five independent methods — analytical, open-source
+      Python, SimScale, ANSYS, Abaqus and physical testing. My contribution was the <b>Python route</b>: a 2D beam
+      idealisation and a full 3D tetrahedral FEA (gmsh + scikit-fem), reaching 112.2 MPa peak stress at the jaw–handle
+      transition.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">gmsh</span><span class="chip">scikit-fem</span><span class="chip">3D tetrahedral FEA</span><span class="chip">Experimental validation</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="project-sustainability.html">
+      <div class="tag">Sustainable engineering · 25WSC602</div>
+      <h3>Life-cycle energy analysis of a consumer product</h3>
+      <p>Whole-life energy assessment of an HP inkjet printer: a material mass breakdown, embodied- and
+      processing-energy calculations across all life-cycle phases using Ansys Granta EduPack, and eco-design and
+      end-of-life (circular-economy) recommendations as part of a group disassembly study.</p>
+      <div class="chips"><span class="chip">LCA</span><span class="chip">Ansys Granta EduPack</span><span class="chip">Embodied energy</span><span class="chip">Circular economy</span></div>
+      <p class="more" style="margin-top:14px">Read case study →</p>
+    </a>
+
+    <a class="card" href="project-ukaea.html">
+      <div class="tag">Industrial placement</div>
+      <h3>Year in industry — UK Atomic Energy Authority</h3>
+      <p>A year-long engineering placement in a highly regulated fusion-research environment: producing technical
+      reports and presentations for multidisciplinary teams, managing competing deadlines and working to strict
+      documentation and safety standards.</p>
+      <div class="chips"><span class="chip">Fusion research</span><span class="chip">Technical reporting</span><span class="chip">Regulated environment</span></div>
+      <p class="more" style="margin-top:14px">See experience →</p>
+    </a>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · MEng Mechanical Engineering</div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

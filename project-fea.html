@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEA: Safe Working Load of a Wrench — Raymond Twum-Barima</title>
+<meta name="description" content="FEA group project determining the safe working load of a spanner by analytical, numerical and experimental methods. My contribution: Python 2D beam and 3D tetrahedral FEA with gmsh and scikit-fem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Raymond <span>Twum-Barima</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<header class="proj-head wrap">
+  <div class="tag">Finite element analysis · Module 25WSC106 · Group 21</div>
+  <h1>Determining the safe working load of a wrench</h1>
+  <div class="meta">
+    <span><b>Type:</b> Group project (6 members)</span>
+    <span><b>My role:</b> Python 2D &amp; 3D FEA</span>
+    <span><b>Tools:</b> Python (gmsh, scikit-fem)</span>
+  </div>
+</header>
+
+<section class="wrap">
+<div class="layout">
+  <div class="content">
+
+    <div class="callout">
+      <b>The brief.</b> Find the safe working load (SWL) of a cheap 13&nbsp;mm spanner using <b>five independent
+      methods</b> — analytical beam theory, open-source Python FEA, non-commercial (SimScale) and commercial (ANSYS,
+      Abaqus) FEA, and physical testing — then compare them. <b>My contribution was the open-source Python route:</b>
+      a 2D beam idealisation and a full 3D tetrahedral FEA model.
+    </div>
+
+    <h2>My contribution — Python FEA from scratch</h2>
+    <p>While teammates ran the commercial packages and the experiment, I built the <b>open-source numerical models in
+    Python</b>, with no commercial licence — full control over meshing, element assembly, boundary conditions and
+    post-processing.</p>
+
+    <h3>2D beam idealisation</h3>
+    <ul>
+      <li>Implemented a 2-node <b>Euler–Bernoulli beam element</b> (2 DOF per node) in Python, idealising the 108&nbsp;mm
+      spanner as a cantilever with a tip load.</li>
+      <li>Ran a <b>convergence study</b> from 1 to 100 elements; because the cubic shape functions exactly reproduce a
+      cantilever's deflection field, even one element was exact — the residual fluctuations were just floating-point
+      noise, which I identified and explained.</li>
+      <li>Extended it to a <b>variable cross-section</b> beam to better match the real geometry.</li>
+    </ul>
+
+    <h3>3D tetrahedral FEA</h3>
+    <figure>
+      <img src="assets/img/fea-model.png" alt="3D spanner geometry meshed with tetrahedral elements, fixed jaw faces in green and applied load in red">
+      <figcaption>My 3D model: the full spanner imported into gmsh and meshed with 10-node quadratic tetrahedra —
+      jaw faces fully fixed (green), distributed load on the inner ring (red).</figcaption>
+    </figure>
+    <ul>
+      <li>Imported the 3D geometry into <b>gmsh</b> and generated a <b>second-order (tetra10) mesh</b> —
+      <b>42,874 elements / 70,949 nodes</b> — chosen because linear tetrahedra are over-stiff and underestimate stress
+      near the jaw fillet radii.</li>
+      <li>Assembled and solved the system in <b>scikit-fem</b>, with the jaw inner faces fully fixed and a distributed
+      load on the ring.</li>
+      <li>Under a 100&nbsp;N load: peak tip displacement 0.43&nbsp;mm and <b>maximum von Mises stress of 112.2&nbsp;MPa</b>
+      at the jaw–handle transition — the critical stress-concentration region — giving an estimated SWL of 180&nbsp;N at a
+      factor of safety of 2.</li>
+    </ul>
+
+    <h2>The wider study</h2>
+    <p>The team approached the same problem from every angle so the methods could be cross-checked:</p>
+    <ul>
+      <li><b>Material:</b> the £3.95 drop-forged spanner was approximated as AISI 1030 steel (E = 208&nbsp;GPa, yield
+      395&nbsp;MPa) using Ansys Granta EduPack; failure was defined as the onset of yielding.</li>
+      <li><b>Analytical:</b> Euler–Bernoulli beam theory with a Peterson stress-concentration factor, verified by
+      slenderness ratio, Timoshenko correction and small-deflection checks.</li>
+      <li><b>Commercial / non-commercial FEA:</b> ANSYS (shell &amp; solid) and SimScale, with mesh studies refining the
+      spanner head.</li>
+      <li><b>Experiment:</b> a rig clamping a hex bar as the "bolt", loading the ring through a hook while a dial test
+      indicator measured deflection.</li>
+    </ul>
+
+    <div class="grid cols-2" style="margin:24px 0">
+      <figure style="margin:0">
+        <img src="assets/img/fea-stress.png" alt="Von Mises stress contour over the whole spanner, peak stress band at the jaw-handle transition">
+        <figcaption>Von Mises stress field — peak stress at the jaw–handle transition.</figcaption>
+      </figure>
+      <figure style="margin:0">
+        <img src="assets/img/fea-rig.png" alt="Experimental test rig: spanner clamped in a vice with a dial test indicator and applied weights">
+        <figcaption>The physical test rig: dial test indicator on the ring, incremental loading to failure.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Results &amp; validation</h2>
+    <p>The physical spanner yielded at ~157&nbsp;N. The key insight from comparing all five methods: second-order FEA with
+    realistic boundary conditions (ANSYS, SimScale) matched the experiment closely, while the analytical and simplified
+    models over-predicted strength — which would be dangerous if trusted for a real SWL.</p>
+
+    <figure>
+      <img src="assets/img/fea-stress-chart.png" alt="Chart of maximum von Mises stress against applied load for different mesh sizes and model types">
+      <figcaption>Maximum von Mises stress vs. applied load across mesh sizes and model types — finer meshes at the
+      spanner head predicted yielding at a lower (more conservative, more accurate) load.</figcaption>
+    </figure>
+
+    <table class="data">
+      <thead><tr><th>Method</th><th>Yield force (N)</th><th>Safe working load (N)</th></tr></thead>
+      <tbody>
+        <tr><td>Physical testing</td><td>157</td><td>80</td></tr>
+        <tr class="best"><td>ANSYS (validated)</td><td>160</td><td>80</td></tr>
+        <tr><td>SimScale</td><td>158</td><td>74</td></tr>
+        <tr><td>My Python 3D tetra</td><td>360</td><td>180</td></tr>
+        <tr><td>Analytical beam</td><td>385</td><td>193</td></tr>
+        <tr><td>Abaqus</td><td>270</td><td>135</td></tr>
+      </tbody>
+    </table>
+    <p>The group's final SWL of <b>80&nbsp;N</b> (factor of safety 2 on the ~157–160&nbsp;N validated yield) was based on
+    the methods that matched reality. My 3D model over-predicted yield because its fully-constrained faces and
+    distributed load are stiffer than the real clamped joint — a limitation I analysed and proposed fixes for (contact
+    modelling of the bolt, point loading, better material characterisation).</p>
+
+    <h2>What I took from it</h2>
+    <ul>
+      <li>Built FEA in Python end-to-end — meshing in gmsh, assembly/solve in scikit-fem — not just driving a GUI.</li>
+      <li>Understood why element order and boundary conditions decide whether a result is trustworthy.</li>
+      <li>Honest comparison against experiment and four other methods, including diagnosing why my own model disagreed.</li>
+      <li>Worked as one of six, owning a clearly-defined technical slice of a larger study.</li>
+    </ul>
+
+    <a class="backlink" href="projects.html">← Back to all projects</a>
+  </div>
+
+  <aside>
+    <div class="sidecard">
+      <h4>Project facts</h4>
+      <dl>
+        <dt>Module</dt><dd>25WSC106 — FEA (Coursework 2)</dd>
+        <dt>My role</dt><dd>Python 2D beam &amp; 3D tetrahedral FEA</dd>
+        <dt>My tools</dt>
+        <dd><div class="chips"><span class="chip">Python</span><span class="chip">gmsh</span><span class="chip">scikit-fem</span></div></dd>
+        <dt>My 3D model</dt><dd>tetra10 · 42,874 elements · 112.2 MPa peak</dd>
+        <dt>Team SWL</dt><dd>80 N (FoS 2)</dd>
+        <dt>Wider toolset</dt>
+        <dd><div class="chips"><span class="chip">ANSYS</span><span class="chip">Abaqus</span><span class="chip">SimScale</span><span class="chip">Experiment</span></div></dd>
+      </dl>
+    </div>
+  </aside>
+</div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Raymond Twum-Barima · Made in London</div>
+    <div class="foot-links">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="mailto:twumbarimaraymond1@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
