@@ -116,10 +116,10 @@ a.card:hover::after { transform: scaleX(1); }
 /* standalone surfaces */
 .now, .sidecard, .metric { border: 1px solid var(--line); border-radius: var(--radius); }
 
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
 .chip {
   font-family: var(--sans); font-size: .76rem; color: var(--muted); background: transparent;
-  border: 1px solid var(--line-2); border-radius: 4px; padding: 3px 9px; font-weight: 500;
+  border: 1px solid var(--line-2); border-radius: 4px; padding: 5px 11px; font-weight: 500;
 }
 
 /* ---------- Stat strip (restrained, hairline dividers) ---------- */
