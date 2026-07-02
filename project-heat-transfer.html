@@ -6,10 +6,20 @@
 <title>2-D Conduction Solver — Raymond Twum-Barima</title>
 <meta name="description" content="Numerical heat transfer coursework: finite-difference solution of 2-D steady conduction with grid-refinement convergence study.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#f3efe7">
+<link rel="canonical" href="https://twumbarimaraymond1-coder.github.io/project-heat-transfer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2-D Conduction Solver — Raymond Twum-Barima">
+<meta property="og:description" content="Numerical heat transfer coursework: finite-difference solution of 2-D steady conduction with grid-refinement convergence study.">
+<meta property="og:url" content="https://twumbarimaraymond1-coder.github.io/project-heat-transfer.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav">
   <div class="nav-inner">
@@ -24,7 +34,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
 <header class="proj-head wrap">
   <div class="tag">Numerical heat transfer coursework · Module 25WSC801</div>
   <h1>Finite-difference solution of 2-D steady conduction</h1>
@@ -52,7 +62,7 @@
     conductivity k = 40 W/m·°C, and a volumetric heat generation of 850 kW/m³.</p>
 
     <figure>
-      <img src="assets/img/ht-geometry.png" alt="Cross-section of the bar with two diagonally-mirrored cut-outs, showing fixed-temperature edges in red and convective edges in blue" style="max-width:520px;margin:0 auto">
+      <img loading="lazy" decoding="async" src="assets/img/ht-geometry.png" alt="Cross-section of the bar with two diagonally-mirrored cut-outs, showing fixed-temperature edges in red and convective edges in blue" style="max-width:520px;margin:0 auto">
       <figcaption>The bar cross-section and boundary conditions: fixed 800 °C edges (red) and convective edges (blue),
       with two diagonally-mirrored cut-outs, modelled as a 2-D conduction domain.</figcaption>
     </figure>
@@ -70,7 +80,7 @@
     interpolated.</p>
 
     <figure>
-      <img src="assets/img/ht-nodes.png" alt="Computational grid with nodes coloured by type: interior conduction, convective, convective cut-out, and fixed-temperature nodes">
+      <img loading="lazy" decoding="async" src="assets/img/ht-nodes.png" alt="Computational grid with nodes coloured by type: interior conduction, convective, convective cut-out, and fixed-temperature nodes">
       <figcaption>Node classification on the grid (with an i, j indexing system) — fixed-temperature, interior
       conduction, convective and convective cut-out nodes each get their own discretised equation.</figcaption>
     </figure>

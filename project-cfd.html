@@ -6,10 +6,20 @@
 <title>CFD: Wind Flow & Heat Transfer Around a Cube — Raymond Twum-Barima</title>
 <meta name="description" content="CFD group project in Star-CCM+ simulating wind flow and heat transfer around a surface-mounted cube. My contribution: a RANS turbulence-model comparison (k-epsilon, SST k-omega, Reynolds Stress Model).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#f3efe7">
+<link rel="canonical" href="https://twumbarimaraymond1-coder.github.io/project-cfd.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CFD: Wind Flow & Heat Transfer Around a Cube — Raymond Twum-Barima">
+<meta property="og:description" content="CFD group project in Star-CCM+ simulating wind flow and heat transfer around a surface-mounted cube. My contribution: a RANS turbulence-model comparison (k-epsilon, SST k-omega, Reynolds Stress Model).">
+<meta property="og:url" content="https://twumbarimaraymond1-coder.github.io/project-cfd.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav">
   <div class="nav-inner">
@@ -24,7 +34,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
 <header class="proj-head wrap">
   <div class="tag">CFD group project · Module WSC812</div>
   <h1>Wind flow &amp; heat transfer around a surface-mounted cube</h1>
@@ -59,12 +69,12 @@
     </ul>
 
     <figure>
-      <img src="assets/img/cfd-cube-velocity.png" alt="Velocity magnitude contour on a vertical plane through the cube, showing acceleration over the top and a low-velocity wake behind">
+      <img loading="lazy" decoding="async" src="assets/img/cfd-cube-velocity.png" alt="Velocity magnitude contour on a vertical plane through the cube, showing acceleration over the top and a low-velocity wake behind">
       <figcaption>Velocity field on a vertical plane through the cube centre — flow accelerates over the leading edge
       and a separated low-velocity wake forms downstream (Siemens Star-CCM+).</figcaption>
     </figure>
     <figure>
-      <img src="assets/img/cfd-cube-horizontal.png" alt="Velocity contour on a horizontal plane near the floor, showing flow wrapping around the cube">
+      <img loading="lazy" decoding="async" src="assets/img/cfd-cube-horizontal.png" alt="Velocity contour on a horizontal plane near the floor, showing flow wrapping around the cube">
       <figcaption>Horizontal plane near the floor — the flow wraps around the cube, forming the characteristic
       horseshoe-vortex structure reported in the literature.</figcaption>
     </figure>
@@ -108,7 +118,7 @@
     the Reynolds Stress Model is the most reliable choice for separated flow — at the cost of slower convergence.</p>
 
     <figure>
-      <img src="assets/img/cfd-residuals.png" alt="Residual convergence plot showing continuity, energy, momentum and turbulence residuals levelling off">
+      <img loading="lazy" decoding="async" src="assets/img/cfd-residuals.png" alt="Residual convergence plot showing continuity, energy, momentum and turbulence residuals levelling off">
       <figcaption>Convergence: residuals level off with the turbulence quantities settling higher, as expected for a
       complex separated flow — verified alongside a stabilised heat-transfer monitor before taking results.</figcaption>
     </figure>

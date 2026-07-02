@@ -6,10 +6,20 @@
 <title>FEA: Safe Working Load of a Wrench — Raymond Twum-Barima</title>
 <meta name="description" content="FEA group project determining the safe working load of a spanner by analytical, numerical and experimental methods. My contribution: Python 2D beam and 3D tetrahedral FEA with gmsh and scikit-fem.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="theme-color" content="#f3efe7">
+<link rel="canonical" href="https://twumbarimaraymond1-coder.github.io/project-fea.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FEA: Safe Working Load of a Wrench — Raymond Twum-Barima">
+<meta property="og:description" content="FEA group project determining the safe working load of a spanner by analytical, numerical and experimental methods. My contribution: Python 2D beam and 3D tetrahedral FEA with gmsh and scikit-fem.">
+<meta property="og:url" content="https://twumbarimaraymond1-coder.github.io/project-fea.html">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav">
   <div class="nav-inner">
@@ -24,7 +34,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
 <header class="proj-head wrap">
   <div class="tag">Finite element analysis · Module 25WSC106 · Group 21</div>
   <h1>Determining the safe working load of a wrench</h1>
@@ -63,7 +73,7 @@
 
     <h3>3D tetrahedral FEA</h3>
     <figure>
-      <img src="assets/img/fea-model.png" alt="3D spanner geometry meshed with tetrahedral elements, fixed jaw faces in green and applied load in red">
+      <img loading="lazy" decoding="async" src="assets/img/fea-model.png" alt="3D spanner geometry meshed with tetrahedral elements, fixed jaw faces in green and applied load in red">
       <figcaption>My 3D model: the full spanner imported into gmsh and meshed with 10-node quadratic tetrahedra —
       jaw faces fully fixed (green), distributed load on the inner ring (red).</figcaption>
     </figure>
@@ -93,11 +103,11 @@
 
     <div class="grid cols-2" style="margin:24px 0">
       <figure style="margin:0">
-        <img src="assets/img/fea-stress.png" alt="Von Mises stress contour over the whole spanner, peak stress band at the jaw-handle transition">
+        <img loading="lazy" decoding="async" src="assets/img/fea-stress.png" alt="Von Mises stress contour over the whole spanner, peak stress band at the jaw-handle transition">
         <figcaption>Von Mises stress field — peak stress at the jaw–handle transition.</figcaption>
       </figure>
       <figure style="margin:0">
-        <img src="assets/img/fea-rig.png" alt="Experimental test rig: spanner clamped in a vice with a dial test indicator and applied weights">
+        <img loading="lazy" decoding="async" src="assets/img/fea-rig.jpg" alt="Experimental test rig: spanner clamped in a vice with a dial test indicator and applied weights">
         <figcaption>The physical test rig: dial test indicator on the ring, incremental loading to failure.</figcaption>
       </figure>
     </div>
@@ -108,7 +118,7 @@
     models over-predicted strength — which would be dangerous if trusted for a real SWL.</p>
 
     <figure>
-      <img src="assets/img/fea-stress-chart.png" alt="Chart of maximum von Mises stress against applied load for different mesh sizes and model types">
+      <img loading="lazy" decoding="async" src="assets/img/fea-stress-chart.png" alt="Chart of maximum von Mises stress against applied load for different mesh sizes and model types">
       <figcaption>Maximum von Mises stress vs. applied load across mesh sizes and model types — finer meshes at the
       spanner head predicted yielding at a lower (more conservative, more accurate) load.</figcaption>
     </figure>

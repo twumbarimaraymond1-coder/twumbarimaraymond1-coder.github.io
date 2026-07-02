@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://twumbarimaraymond1-coder.github.io/sitemap.xml
